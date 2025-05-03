@@ -22,8 +22,19 @@ public class TaskController {
     @GetMapping
     public ResponseEntity<List<TaskDTO>> buscarTodosController() {
         List<TaskDTO> taskDTOList = taskService.buscaTodasService();
+
         return ResponseEntity.ok(taskDTOList);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TaskDTO> buscarPorIdController(@PathVariable Long id) {
+        //return ResponseEntity.ok(taskService.buscarPorIDService(id));
+        //ou
+        TaskDTO taskDTO = taskService.buscarPorIDService(id);
+
+        return ResponseEntity.ok(taskDTO);
+    }
+
 
     @PostMapping
     public ResponseEntity<TaskDTO> inserirController(@RequestBody TaskDTO taskDTO) {
@@ -34,6 +45,7 @@ public class TaskController {
                 .path("/{id}")
                 .buildAndExpand(taskDTO.getId())
                 .toUri();
+
         return ResponseEntity.created(uri).body(taskDTO);
     }
 }

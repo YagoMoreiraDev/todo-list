@@ -23,6 +23,13 @@ public class TaskService {
         return taskList.stream().map(item -> new TaskDTO(item)).toList();
     }
 
+    @Transactional(readOnly = true)
+    public TaskDTO buscarPorIDService(Long id) {
+        Task task = taskRepository.findById(id).get();
+
+        return new TaskDTO(task);
+    }
+
     @Transactional
     public TaskDTO inserirService(TaskDTO taskDTO) {
         Task task = new Task();
