@@ -49,4 +49,9 @@ public class TaskService {
         return new TaskDTO(task);
     }
 
+    @Transactional
+    public void deletaService(Long id) {
+        taskRepository.deleteById(id);
+    }
+
 }
