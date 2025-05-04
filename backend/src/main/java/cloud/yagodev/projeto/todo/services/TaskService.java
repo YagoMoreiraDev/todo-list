@@ -39,4 +39,14 @@ public class TaskService {
         return new TaskDTO(task);
     }
 
+    @Transactional
+    public TaskDTO atualizarService(Long id, TaskDTO taskDTO) {
+        Task task = taskRepository.getReferenceById(id);
+
+        task.setDescription(taskDTO.getDescription());
+
+        task = taskRepository.save(task);
+        return new TaskDTO(task);
+    }
+
 }

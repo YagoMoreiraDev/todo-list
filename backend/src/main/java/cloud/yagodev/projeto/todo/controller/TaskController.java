@@ -48,4 +48,10 @@ public class TaskController {
 
         return ResponseEntity.created(uri).body(taskDTO);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TaskDTO> atualizarController(@PathVariable Long id, @RequestBody TaskDTO taskDTO) {
+        taskDTO = taskService.atualizarService(id, taskDTO);
+        return ResponseEntity.ok(taskDTO);
+    }
 }
